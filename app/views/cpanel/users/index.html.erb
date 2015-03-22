@@ -1,0 +1,35 @@
+<% content_for :sitemap do %>
+  <span class="current">用户</span>
+<% end %>
+<div class="toolbar">
+  <form class="form-search" action="<%= cpanel_users_path %>">
+    <input type="text" name="q" class="span2" value="<%= params[:q] %>" placeholder="用户名" /> <button class="btn btn-small">搜索</button>
+  </form>
+</div>
+
+<table class="table table-bordered table-striped table-condensed">
+  <tr class="head">
+    <td class="first">Id</td>
+        <td>Login</td>
+        <td>Email</td>
+    <td>Location</td>
+    <td>State</td>
+    <td>Verified</td>
+    <td>操作</td>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td class="first"><%= user.id %></td>
+    <td><%= user.login %></td>
+    <td><%= user.email %></td>
+    <td><%= user.location %></td>
+    <td><%= user.state %></td>
+    <td><%= user.verified %></td>
+    <td>
+      <%= link_to '', edit_cpanel_user_path(user), class: "icon small_edit" %>
+    </td>
+  </tr>
+<% end %>
+</table>
+<%= will_paginate @users %>

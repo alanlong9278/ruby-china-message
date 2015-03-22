@@ -1,0 +1,29 @@
+
+<%= form_for(@message,  url: user_messages_path) do |f| %>
+    <% if current_user.admin? %>
+        <select onchange="choose_reciever(this.value);" name="identity" id="userIdentity">
+          <option value="0">
+            <%= t("message.all_people") %>
+          </option>
+          <option value="1">
+            <%= t("message.some_people") %>
+          </option>
+
+        </select>
+
+        <p id="reciever">
+            <%= f.text_field :to, class: "span5", placeholder: t("message.reciever") %>
+        </p>
+    <% else %>
+        <%= f.text_field :to, class: "span5", placeholder: t("message.reciever") %>
+    <% end %>
+    <br/><br/>
+
+    <div class="control-group">
+      <%= f.text_area :body, class: "message-editor" %>
+    </div>
+
+    <div class="control-group">
+      <%= f.submit t("common.save"), class: "btn btn-primary", 'data-disable-with' => t("common.saving") %>
+    </div>
+<% end %>

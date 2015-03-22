@@ -1,0 +1,55 @@
+<div class="tools">
+  <%= link_to t("common.clear"), clear_user_messages_path(sender: @sender, tab: @tab), class: 'btn btn-danger', method: :post, 'data-disable-with' => '清空中...' %>
+  <h1 class="pull-right"><%= t("message.messages")%> <small style="font-size:12px;margin-left:5px;">(<%= @messages.count %> 条)</small></h1>
+</div>
+<% if @messages.blank? %>
+    <div class="no-result" style="padding:80px 0;"><%= t("message.no_messages")%></div>
+<% else %>
+    <table class="table">
+      <tbody>
+          <% @messages.each do |message| %>
+              <tr id = "message_<%= message.id %>" >
+                <td>
+                  <% if @sender == false  %>
+
+                  <h3>
+                    <% if @tab == '0' %>
+                        <span class="user">
+                           <%= user_name_tag(message.sender) %>
+                        </span>
+                        给你发了私信
+                    <% else %>
+                        <%= t("message.admin_message")%>
+                    <% end %>
+                    <% if !message.isread %>
+                        <span class="new label label-warning">新</span>
+                    <% end %>
+
+                  </h3>
+
+                  <div class="body markdown-body">
+                    <%= link_to(truncate(message.body, length: 20),user_message_path(id: message.id)) %>
+                  </div>
+                  <% else %>
+                  <h3>
+                    你给
+                    <span class="user">
+                        <%= user_name_tag(message.recipenter) %>
+                    </span>
+                     发了私信
+                  </h3>
+
+                      <div class="body markdown-body">
+                        <%= link_to(truncate(message.body, length: 20),user_message_path(id: message.id)) %>
+                      </div>
+                  <% end %>
+                </td>
+                <td class="last">
+                  <%= link_to t("common.delete"), user_message_path(id: message.id, sender: @sender), method: :delete, remote: true, class: 'label delete' %>
+                </td>
+              </tr>
+          <% end %>
+      </tbody>
+    </table>
+<% end %>
+<%= will_paginate @messages %>

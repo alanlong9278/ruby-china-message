@@ -1,0 +1,8 @@
+<div class="subnav">
+  <%= render_list class: "nav nav-tabs" do |li|
+    li << link_to(t("message.menu.recieved_message"), user_messages_path(tab: '0'))
+    li << link_to(t("message.menu.recieved_message_by_admin"), user_messages_path(tab: '1'))
+    li << link_to(t("message.menu.send_message"), sender_user_messages_path)
+    li << link_to(t("message.menu.write_message"), new_user_message_path)
+  end %>
+</div>

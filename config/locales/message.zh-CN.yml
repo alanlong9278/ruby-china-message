@@ -1,0 +1,14 @@
+zh-CN:
+  message:
+    send_succeed: 站内信发送成功
+    reciever: 收件人
+    messages: 站内信
+    no_messages: 暂无信件
+    admin_message: 系统给您发了一份信息
+    all_people: 所有人
+    some_people: 某些人
+    menu:
+      send_message: "已发私信"
+      recieved_message_by_admin: "系统私信"
+      recieved_message: "私信"
+      write_message: "写信"

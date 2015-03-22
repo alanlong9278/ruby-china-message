@@ -1,0 +1,15 @@
+<script type="text/javascript" language="javascript">
+    function choose_reciever(identity) {
+        if(identity == '0')
+            $('p#reciever').hide()
+        else
+            $('p#reciever').show()
+    }
+</script>
+<%= render 'menu' %>
+
+<div class="content">
+    <div class="box">
+        <%= render "form" %>
+    </div>
+</div>

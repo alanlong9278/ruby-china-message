@@ -1,0 +1,10 @@
+<%= render 'menu' %>
+
+
+  <h1 class="entry-title">发件人: <%= user_name_tag(@message.sender) %></h1>
+  <h1 class="entry-title">收件人: <%= user_name_tag(@message.recipenter) %></h1>
+
+
+<div class="body markdown-body entry-content">
+  <p id="content"><%= sanitize_markdown @message.body %></p>
+</div>

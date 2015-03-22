@@ -1,0 +1,17 @@
+<% cache(["index_locations",CacheVersion.section_node_updated_at]) do %>
+<div id="sections" class="box">
+  <h2 class="title"><%= t("common.index_node_navigation")%></h2>
+  <ul>
+    <% Section.all.each do |section| %>
+    <li>
+      <label><%= section.name %></label>
+      <span class="nodes">
+        <% section.nodes.each do |node| %>
+            <%= link_to(node.name, node_topics_path(node), title: node.name )%>
+        <% end %>
+      </span>
+    </li>
+    <% end %>
+  </ul>
+</div>
+<% end %>

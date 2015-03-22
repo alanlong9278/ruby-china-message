@@ -1,0 +1,10 @@
+<% cache(["index_locations",Time.now.strftime("%Y-%m-%D")]) do %>
+<div id="hot_locations" class="box">
+  <h2 class="title"><%=t("common.hot_locations")%></h2>
+  <ul>
+  <% Location.hot.limit(12).each do |item| %>
+    <li class="name"><%= location_name_tag(item) %></li>
+  <% end %>
+  </ul>
+</div>
+<% end %>
